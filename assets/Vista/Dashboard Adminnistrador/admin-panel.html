@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administrador - St-Rental</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body tamañobody">
+  <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+          <div class="sidebar-header">
+              <h2>St-Rental</h2>
+              <span class="user-role">Administrador</span>
+          </div>
+          
+          <div class="sidebar-user">
+              <div class="user-avatar">
+                  <img src="../../css/img/avatar-1.png" alt="Avatar de administrador">
+              </div>
+              <div class="user-info">
+                  <h3>Admin Sistema</h3>
+                  <p>admin@rentrooms.com</p>
+              </div>
+          </div>
+          
+          <nav class="sidebar-nav">
+              <ul>
+                  <li class="active">
+                      <a href="#" data-section="dashboard">
+                          <i class="fas fa-tachometer-alt"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#" data-section="users">
+                          <i class="fas fa-users"></i>
+                          <span>Usuarios</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="#" data-section="finances">
+                          <i class="fas fa-chart-line"></i>
+                          <span>Finanzas</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#" data-section="reports">
+                          <i class="fas fa-file-alt"></i>
+                          <span>Reportes</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#" data-section="statistics">
+                          <i class="fas fa-chart-pie"></i>
+                          <span>Estadísticas</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#" data-section="settings">
+                          <i class="fas fa-cog"></i>
+                          <span>Configuración</span>
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+          
+          <div class="sidebar-footer">
+              <a href="../../../index.html" class="logout-btn">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Cerrar sesión</span>
+              </a>
+          </div>
+      </aside>
+      
+      <!-- Main Content -->
+      <main class="main-content">
+          <header class="dashboard-header">
+              <div class="header-search">
+                  <i class="fas fa-search"></i>
+                  <input type="text" placeholder="Buscar...">
+              </div>
+              
+              <div class="header-actions">
+                  <div class="notification-bell">
+                      <i class="fas fa-bell"></i>
+                      <span class="notification-badge">5</span>
+                  </div>
+                  
+                  <div class="header-user">
+                      <img src="../../css/img/avatar-1.png" alt="Avatar de administrador">
+                      <span>Admin Sistema</span>
+                  </div>
+              </div>
+          </header>
+          
+          <!-- Dashboard Section -->
+          <section class="dashboard-section active" id="dashboard-section">
+              <div class="section-header">
+                  <div>
+                      <h1>Dashboard de Administrador</h1>
+                      <p>Bienvenido al panel de administración. Aquí tienes un resumen del sistema.</p>
+                  </div>
+              </div>
+              
+              <div class="stats-cards">
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-users"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>15</h3>
+                          <p>Usuarios registrados</p>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-home"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>28</h3>
+                          <p>Propiedades</p>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-door-open"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>112</h3>
+                          <p>Habitaciones</p>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-money-bill-wave"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>$12,500,000</h3>
+                          <p>Ingresos totales</p>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="dashboard-charts">
+                  <div class="chart-container tamañosistemas">
+                      <div class="chart-header">
+                          <h3>Actividad del sistema</h3>
+                          <div class="chart-actions">
+                              <select id="activityPeriod">
+                                  <option value="week">Última semana</option>
+                                  <option value="month">Último mes</option>
+                                  <option value="year">Último año</option>
+                              </select>
+                          </div>
+                      </div>
+                      <canvas id="activityChart"></canvas>
+                  </div>
+                  
+                  <div class="chart-container tamañosistemas2">
+                      <div class="chart-header">
+                          <h3>Estado de habitaciones</h3>
+                      </div>
+                      <canvas id="roomStatusChart"></canvas>
+                  </div>
+              </div>
+              
+              <div class="dashboard-charts">
+                  <div class="chart-container">
+                      <div class="chart-header">
+                          <h3>Propiedades por usuario</h3>
+                      </div>
+                      <canvas id="propertiesPerUserChart"></canvas>
+                  </div>
+                  
+                  <div class="chart-container">
+                      <div class="chart-header">
+                          <h3>Ingresos mensuales</h3>
+                          <div class="chart-actions">
+                              <select id="incomeYear">
+                                  <option value="2025">2025</option>
+                                  <option value="2024">2024</option>
+                              </select>
+                          </div>
+                      </div>
+                      <canvas id="monthlyIncomeChart"></canvas>
+                  </div>
+              </div>
+              
+              <div class="recent-activity">
+                  <div class="section-header">
+                      <h2>Actividad reciente</h2>
+                      <a href="#" class="view-all">Ver todo</a>
+                  </div>
+                  
+                  <div class="activity-list">
+                      <div class="activity-item">
+                          <div class="activity-icon new-user">
+                              <i class="fas fa-user-plus"></i>
+                          </div>
+                          <div class="activity-details">
+                              <h4>Nuevo usuario registrado</h4>
+                              <p>Roberto Méndez se ha registrado como arrendador.</p>
+                              <span class="activity-time">Hace 1 hora</span>
+                          </div>
+                      </div>
+                      
+                      <div class="activity-item">
+                          <div class="activity-icon new-property">
+                              <i class="fas fa-home"></i>
+                          </div>
+                          <div class="activity-details">
+                              <h4>Nueva propiedad agregada</h4>
+                              <p>Juan Pérez ha agregado una nueva propiedad en Ñuñoa.</p>
+                              <span class="activity-time">Hace 3 horas</span>
+                          </div>
+                      </div>
+                      
+                      <div class="activity-item">
+                          <div class="activity-icon payment">
+                              <i class="fas fa-money-bill-wave"></i>
+                          </div>
+                          <div class="activity-details">
+                              <h4>Pago registrado</h4>
+                              <p>Se ha registrado un pago de $220,000 en el sistema.</p>
+                              <span class="activity-time">Hace 5 horas</span>
+                          </div>
+                      </div>
+                      
+                      <div class="activity-item">
+                          <div class="activity-icon issue">
+                              <i class="fas fa-exclamation-triangle"></i>
+                          </div>
+                          <div class="activity-details">
+                              <h4>Problema reportado</h4>
+                              <p>Un usuario ha reportado un problema con el sistema de pagos.</p>
+                              <span class="activity-time">Ayer</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+          
+          <!-- Users Section -->
+          <section class="dashboard-section" id="users-section">
+              <div class="section-header">
+                  <h1>Gestión de Usuarios</h1>
+                  <button class="btn-primary add-new">
+                      <i class="fas fa-plus"></i> Agregar usuario
+                  </button>
+              </div>
+              
+              <div class="filter-bar">
+                  <div class="header-search">
+                      <i class="fas fa-search"></i>
+                      <input type="text" placeholder="Buscar usuario...">
+                  </div>
+                  <br>
+                  <div class="section-filters">
+                      <select id="userRoleFilter">
+                          <option value="all">Todos los roles</option>
+                          <option value="admin">Administrador</option>
+                          <option value="landlord">Arrendador</option>
+                      </select>
+                      
+                      <select id="userStatusFilter">
+                          <option value="all">Todos los estados</option>
+                          <option value="active">Activo</option>
+                          <option value="inactive">Inactivo</option>
+                      </select>
+                      
+                      <button class="btn-outline">
+                          <i class="fas fa-filter"></i> Filtrar
+                      </button>
+                  </div>
+              </div>
+              <br>
+              <div class="tenants-table-container">
+                  <table class="tenants-table">
+                      <thead>
+                          <tr>
+                              <th>Usuario</th>
+                              <th>Email</th>
+                              <th>Rol</th>
+                              <th>Propiedades</th>
+                              <th>Fecha registro</th>
+                              <th>Estado</th>
+                              <th>Acciones</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>
+                                  <div class="tenant-info">
+                                      <img src="../../css/img/1.png" alt="Juan Pérez">
+                                      <div>
+                                          <h4>Juan Pérez</h4>
+                                          <p>ID: #12345</p>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>juan.perez@email.com</td>
+                              <td><span class="status-badge">Arrendador</span></td>
+                              <td>3</td>
+                              <td>10/01/2025</td>
+                              <td><span class="status-badge active">Activo</span></td>
+                              <td>
+                                  <div class="table-actions">
+                                      <button class="btn-icon">
+                                          <i class="fas fa-eye"></i>
+                                      </button>
+                                      <button class="btn-icon">
+                                          <i class="fas fa-edit"></i>
+                                      </button>
+                                      <button class="btn-icon danger">
+                                          <i class="fas fa-trash"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                          
+                          <tr>
+                              <td>
+                                  <div class="tenant-info">
+                                      <img src="../../css/img/avatar-3.png" alt="María González">
+                                      <div>
+                                          <h4>María González</h4>
+                                          <p>ID: #12346</p>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>maria.gonzalez@email.com</td>
+                              <td><span class="status-badge">Arrendador</span></td>
+                              <td>2</td>
+                              <td>15/02/2025</td>
+                              <td><span class="status-badge active">Activo</span></td>
+                              <td>
+                                  <div class="table-actions">
+                                      <button class="btn-icon">
+                                          <i class="fas fa-eye"></i>
+                                      </button>
+                                      <button class="btn-icon">
+                                          <i class="fas fa-edit"></i>
+                                      </button>
+                                      <button class="btn-icon danger">
+                                          <i class="fas fa-trash"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                          
+                          <tr>
+                              <td>
+                                  <div class="tenant-info">
+                                      <img src="../../css/img/avatar-4.png" alt="Carlos Rodríguez">
+                                      <div>
+                                          <h4>Carlos Rodríguez</h4>
+                                          <p>ID: #12347</p>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>carlos.rodriguez@email.com</td>
+                              <td><span class="status-badge">Arrendador</span></td>
+                              <td>5</td>
+                              <td>22/03/2025</td>
+                              <td><span class="status-badge active">Activo</span></td>
+                              <td>
+                                  <div class="table-actions">
+                                      <button class="btn-icon">
+                                          <i class="fas fa-eye"></i>
+                                      </button>
+                                      <button class="btn-icon">
+                                          <i class="fas fa-edit"></i>
+                                      </button>
+                                      <button class="btn-icon danger">
+                                          <i class="fas fa-trash"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                          
+                          <tr>
+                              <td>
+                                  <div class="tenant-info">
+                                      <img src="../../css/img/avatar-2.png" alt="Ana López">
+                                      <div>
+                                          <h4>Ana López</h4>
+                                          <p>ID: #12348</p>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>ana.lopez@email.com</td>
+                              <td><span class="status-badge">Arrendador</span></td>
+                              <td>1</td>
+                              <td>05/04/2025</td>
+                              <td><span class="status-badge inactive">Inactivo</span></td>
+                              <td>
+                                  <div class="table-actions">
+                                      <button class="btn-icon">
+                                          <i class="fas fa-eye"></i>
+                                      </button>
+                                      <button class="btn-icon">
+                                          <i class="fas fa-edit"></i>
+                                      </button>
+                                      <button class="btn-icon danger">
+                                          <i class="fas fa-trash"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                          
+                          <tr>
+                              <td>
+                                  <div class="tenant-info">
+                                      <img src="../../css/img/avatar-1.png" alt="Admin Sistema">
+                                      <div>
+                                          <h4>Admin Sistema</h4>
+                                          <p>ID: #12349</p>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>admin@rentrooms.com</td>
+                              <td><span class="status-badge">Administrador</span></td>
+                              <td>-</td>
+                              <td>01/01/2025</td>
+                              <td><span class="status-badge active">Activo</span></td>
+                              <td>
+                                  <div class="table-actions">
+                                      <button class="btn-icon">
+                                          <i class="fas fa-eye"></i>
+                                      </button>
+                                      <button class="btn-icon">
+                                          <i class="fas fa-edit"></i>
+                                      </button>
+                                      <button class="btn-icon danger disabled">
+                                          <i class="fas fa-trash"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <!--
+                    <div class="pagination">
+                  <button class="btn-icon">
+                      <i class="fas fa-chevron-left"></i>
+                  </button>
+                  <div class="pagination-numbers">
+                      <button class="pagination-number active">1</button>
+                      <button class="pagination-number">2</button>
+                      <button class="pagination-number">3</button>
+                      <span class="pagination-ellipsis">...</span>
+                      <button class="pagination-number">10</button>
+                  </div>
+                  <button class="btn-icon">
+                      <i class="fas fa-chevron-right"></i>
+                  </button>
+              </div>
+              -->
+        
+          </section>
+          
+          <!-- Properties Section 
+          <section class="dashboard-section" id="properties-section">
+              <div class="section-header">
+                  <h1>Propiedades del Sistema</h1>
+                  <button class="btn-primary add-new">
+                      <i class="fas fa-plus"></i> Agregar propiedad
+                  </button>
+              </div>
+              
+              <div class="filter-bar">
+                  <div class="header-search">
+                      <i class="fas fa-search"></i>
+                      <input type="text" placeholder="Buscar propiedad...">
+                  </div>
+                  <br>
+                  <div class="section-filters">
+                      <select id="propertyOwnerFilter">
+                          <option value="all">Todos los propietarios</option>
+                          <option value="1">Juan Pérez</option>
+                          <option value="2">María González</option>
+                          <option value="3">Carlos Rodríguez</option>
+                      </select>
+                      
+                      <select id="propertyLocationFilter">
+                          <option value="all">Todas las ubicaciones</option>
+                          <option value="santiago">Santiago Centro</option>
+                          <option value="providencia">Providencia</option>
+                          <option value="lascondes">Las Condes</option>
+                          <option value="nunoa">Ñuñoa</option>
+                      </select>
+                      
+                      <button class="btn-outline">
+                          <i class="fas fa-filter"></i> Filtrar
+                      </button>
+                  </div>
+              </div>
+              <br>
+              <div class="properties-list">
+                  <div class="property-item">
+                      <div class="property-image">
+                          <img src="../../css/img/santiago.jpg" alt="Casa en Santiago Centro">
+                      </div>
+                      <div class="property-details">
+                          <h3>Casa en Santiago Centro</h3>
+                          <p class="property-address"><i class="fas fa-map-marker-alt"></i> Av. Libertador 1234, Santiago Centro</p>
+                          <div class="property-stats">
+                              <div class="stat">
+                                  <i class="fas fa-door-open"></i>
+                                  <span>5 habitaciones</span>
+                              </div>
+                              <div class="stat">
+                                  <i class="fas fa-users"></i>
+                                  <span>3 ocupadas</span>
+                              </div>
+                              <div class="stat">
+                                  <i class="fas fa-money-bill-wave"></i>
+                                  <span>$750,000 / mes</span>
+                              </div>
+                          </div>
+                          <div class="property-actions">
+                              <button class="btn-secondary">
+                                  <i class="fas fa-eye"></i> Ver detalles
+                              </button>
+                              <button class="btn-outline">
+                                  <i class="fas fa-edit"></i> Editar
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="property-item">
+                      <div class="property-image">
+                          <img src="../../css/img/depa.jpg" alt="Departamento en Providencia">
+                      </div>
+                      <div class="property-details">
+                          <h3>Departamento en Providencia</h3>
+                          <p class="property-address"><i class="fas fa-map-marker-alt"></i> Calle Nueva 567, Providencia</p>
+                          <div class="property-stats">
+                              <div class="stat">
+                                  <i class="fas fa-door-open"></i>
+                                  <span>3 habitaciones</span>
+                              </div>
+                              <div class="stat">
+                                  <i class="fas fa-users"></i>
+                                  <span>2 ocupadas</span>
+                              </div>
+                              <div class="stat">
+                                  <i class="fas fa-money-bill-wave"></i>
+                                  <span>$500,000 / mes</span>
+                              </div>
+                          </div>
+                          <div class="property-actions">
+                              <button class="btn-secondary">
+                                  <i class="fas fa-eye"></i> Ver detalles
+                              </button>
+                              <button class="btn-outline">
+                                  <i class="fas fa-edit"></i> Editar
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="property-item">
+                      <div class="property-image">
+                          <img src="../../css/img/condes.jpg" alt="Casa en Las Condes">
+                      </div>
+                      <div class="property-details">
+                          <h3>Casa en Las Condes</h3>
+                          <p class="property-address"><i class="fas fa-map-marker-alt"></i> Av. Principal 789, Las Condes</p>
+                          <div class="property-stats">
+                              <div class="stat">
+                                  <i class="fas fa-door-open"></i>
+                                  <span>4 habitaciones</span>
+                              </div>
+                              <div class="stat">
+                                  <i class="fas fa-users"></i>
+                                  <span>3 ocupadas</span>
+                              </div>
+                              <div class="stat">
+                                  <i class="fas fa-money-bill-wave"></i>
+                                  <span>$650,000 / mes</span>
+                              </div>
+                          </div>
+                          <div class="property-actions">
+                              <button class="btn-secondary">
+                                  <i class="fas fa-eye"></i> Ver detalles
+                              </button>
+                              <button class="btn-outline">
+                                  <i class="fas fa-edit"></i> Editar
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="property-item">
+                      <div class="property-image">
+                          <img src="../../css/img/santiago.jpg" alt="Casa en Ñuñoa">
+                      </div>
+                      <div class="property-details">
+                          <h3>Casa en Ñuñoa</h3>
+                          <p class="property-address"><i class="fas fa-map-marker-alt"></i> Calle Tranquila 456, Ñuñoa</p>
+                          <div class="property-stats">
+                              <div class="stat">
+                                  <i class="fas fa-door-open"></i>
+                                  <span>6 habitaciones</span>
+                              </div>
+                              <div class="stat">
+                                  <i class="fas fa-users"></i>
+                                  <span>4 ocupadas</span>
+                              </div>
+                              <div class="stat">
+                                  <i class="fas fa-money-bill-wave"></i>
+                                  <span>$850,000 / mes</span>
+                              </div>
+                          </div>
+                          <div class="property-actions">
+                              <button class="btn-secondary">
+                                  <i class="fas fa-eye"></i> Ver detalles
+                              </button>
+                              <button class="btn-outline">
+                                  <i class="fas fa-edit"></i> Editar
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="pagination">
+                  <button class="btn-icon">
+                      <i class="fas fa-chevron-left"></i>
+                  </button>
+                  <div class="pagination-numbers">
+                      <button class="pagination-number active">1</button>
+                      <button class="pagination-number">2</button>
+                      <button class="pagination-number">3</button>
+                      <span class="pagination-ellipsis">...</span>
+                      <button class="pagination-number">7</button>
+                  </div>
+                  <button class="btn-icon">
+                      <i class="fas fa-chevron-right"></i>
+                  </button>
+              </div>
+          </section>
+          -->
+          <!-- Finances Section -->
+          <section class="dashboard-section" id="finances-section">
+              <div class="section-header">
+                  <h1>Finanzas del Sistema</h1>
+                  <div class="section-filters">
+                      <label for="financeMonth">Período:</label>
+                      <select id="financeMonth">
+                          <option value="5-2025">Mayo 2025</option>
+                          <option value="4-2025">Abril 2025</option>
+                          <option value="3-2025">Marzo 2025</option>
+                          <option value="all-2025">Todo 2025</option>
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="finance-summary">
+                  <div class="summary-card income">
+                      <div class="summary-icon">
+                          <i class="fas fa-money-bill-wave"></i>
+                      </div>
+                      <div class="summary-details">
+                          <h3>Ingresos totales</h3>
+                          <p class="amount">$12,500,000</p>
+                          <p class="trend positive">+8.5% vs período anterior</p>
+                      </div>
+                  </div>
+                  
+                  <div class="summary-card">
+                      <div class="summary-icon">
+                          <i class="fas fa-exchange-alt"></i>
+                      </div>
+                      <div class="summary-details">
+                          <h3>Transacciones</h3>
+                          <p class="amount">152</p>
+                          <p class="trend positive">+12.3% vs período anterior</p>
+                      </div>
+                  </div>
+                  
+                  <div class="summary-card">
+                      <div class="summary-icon">
+                          <i class="fas fa-user-plus"></i>
+                      </div>
+                      <div class="summary-details">
+                          <h3>Nuevos usuarios</h3>
+                          <p class="amount">8</p>
+                          <p class="trend positive">+33.3% vs período anterior</p>
+                      </div>
+                  </div>
+                  
+                  <div class="summary-card">
+                      <div class="summary-icon">
+                          <i class="fas fa-cog"></i>
+                      </div>
+                      <div class="summary-details">
+                          <h3>Comisión del sistema</h3>
+                          <p class="amount">$625,000</p>
+                          <p class="trend positive">+8.5% vs período anterior</p>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="dashboard-charts tamañofinanzas3">
+                  <div class="chart-container">
+                      <div class="chart-header">
+                          <h3>Ingresos por usuario</h3>
+                      </div>
+                      <canvas id="userIncomeChart"></canvas>
+                  </div>
+                  <div class="chart-container tamañofinanzas4">
+                      <div class="chart-header">
+                          <h3>Ingresos por ubicación</h3>
+                      </div>
+                      <canvas id="locationIncomeChart"></canvas>
+                  </div>
+              </div>
+              
+              <div class="section-header">
+                  <h2>Resumen de transacciones</h2>
+                  <a href="#" class="btn-outline">
+                      <i class="fas fa-download"></i> Exportar CSV
+                  </a>
+              </div>
+              
+              <div class="transactions-table-container">
+                  <table class="transactions-table">
+                      <thead>
+                          <tr>
+                              <th>ID</th>
+                              <th>Fecha</th>
+                              <th>Usuario</th>
+                              <th>Descripción</th>
+                              <th>Propiedad</th>
+                              <th>Monto</th>
+                              <th>Comisión</th>
+                              <th>Estado</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>#TR-12345</td>
+                              <td>12/05/2025</td>
+                              <td>Juan Pérez</td>
+                              <td>Pago de arriendo - Mayo</td>
+                              <td>Casa en Santiago Centro</td>
+                              <td class="amount positive">+$200,000</td>
+                              <td>$10,000</td>
+                              <td><span class="status-badge completed">Completado</span></td>
+                          </tr>
+                          
+                          <tr>
+                              <td>#TR-12346</td>
+                              <td>10/05/2025</td>
+                              <td>Juan Pérez</td>
+                              <td>Pago de arriendo - Mayo</td>
+                              <td>Casa en Santiago Centro</td>
+                              <td class="amount positive">+$190,000</td>
+                              <td>$9,500</td>
+                              <td><span class="status-badge completed">Completado</span></td>
+                          </tr>
+                          
+                          <tr>
+                              <td>#TR-12347</td>
+                              <td>05/05/2025</td>
+                              <td>María González</td>
+                              <td>Pago de arriendo - Mayo</td>
+                              <td>Departamento en Providencia</td>
+                              <td class="amount positive">+$170,000</td>
+                              <td>$8,500</td>
+                              <td><span class="status-badge completed">Completado</span></td>
+                          </tr>
+                          
+                          <tr>
+                              <td>#TR-12348</td>
+                              <td>03/05/2025</td>
+                              <td>Carlos Rodríguez</td>
+                              <td>Pago de arriendo - Mayo</td>
+                              <td>Casa en Ñuñoa</td>
+                              <td class="amount positive">+$220,000</td>
+                              <td>$11,000</td>
+                              <td><span class="status-badge completed">Completado</span></td>
+                          </tr>
+                          
+                          <tr>
+                              <td>#TR-12349</td>
+                              <td>01/05/2025</td>
+                              <td>Ana López</td>
+                              <td>Pago de arriendo - Mayo</td>
+                              <td>Casa en Las Condes</td>
+                              <td class="amount positive">+$180,000</td>
+                              <td>$9,000</td>
+                              <td><span class="status-badge pending">Pendiente</span></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </section>
+          
+          <!-- Reports Section -->
+          <section class="dashboard-section" id="reports-section">
+              <div class="section-header">
+                  <h1>Reportes del Sistema</h1>
+              </div>
+              
+              <div class="rooms-grid">
+                  <div class="room-card">
+                      <div class="room-header">
+                          <h3>Reporte de usuarios</h3>
+                      </div>
+                      <div class="room-details">
+                          <p>Información detallada sobre usuarios registrados, actividad y propiedades.</p>
+                          <div class="room-actions">
+                              <button class="btn-secondary">
+                                  <i class="fas fa-eye"></i> Ver reporte
+                              </button>
+                              <button class="btn-outline">
+                                  <i class="fas fa-download"></i> Descargar CSV
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="room-card">
+                      <div class="room-header">
+                          <h3>Reporte de propiedades</h3>
+                      </div>
+                      <div class="room-details">
+                          <p>Datos sobre propiedades, habitaciones, ocupación y rendimiento.</p>
+                          <div class="room-actions">
+                              <button class="btn-secondary">
+                                  <i class="fas fa-eye"></i> Ver reporte
+                              </button>
+                              <button class="btn-outline">
+                                  <i class="fas fa-download"></i> Descargar CSV
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="room-card">
+                      <div class="room-header">
+                          <h3>Reporte financiero</h3>
+                      </div>
+                      <div class="room-details">
+                          <p>Análisis completo de ingresos, transacciones y comisiones del sistema.</p>
+                          <div class="room-actions">
+                              <button class="btn-secondary">
+                                  <i class="fas fa-eye"></i> Ver reporte
+                              </button>
+                              <button class="btn-outline">
+                                  <i class="fas fa-download"></i> Descargar CSV
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="room-card">
+                      <div class="room-header">
+                          <h3>Reporte de actividad</h3>
+                      </div>
+                      <div class="room-details">
+                          <p>Estadísticas de uso del sistema, acciones y eventos registrados.</p>
+                          <div class="room-actions">
+                              <button class="btn-secondary">
+                                  <i class="fas fa-eye"></i> Ver reporte
+                              </button>
+                              <button class="btn-outline">
+                                  <i class="fas fa-download"></i> Descargar CSV
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <br>
+              <div class="chart-container">
+                  <div class="section-header">
+                      <h2>Generar reporte personalizado</h2>
+                  </div>
+                  
+                  <form class="settings-form">
+                      <div class="form-row">
+                          <div class="form-group">
+                              <label for="reportType">Tipo de reporte</label>
+                              <select id="reportType" name="reportType" required>
+                                  <option value="">Seleccionar tipo</option>
+                                  <option value="users">Usuarios</option>
+                                  <option value="properties">Propiedades</option>
+                                  <option value="finances">Finanzas</option>
+                                  <option value="activity">Actividad</option>
+                                  <option value="combined">Combinado</option>
+                              </select>
+                          </div>
+                          
+                          <div class="form-group">
+                              <label for="reportPeriod">Período</label>
+                              <select id="reportPeriod" name="reportPeriod" required>
+                                  <option value="">Seleccionar período</option>
+                                  <option value="current-month">Mes actual</option>
+                                  <option value="last-month">Mes anterior</option>
+                                  <option value="current-year">Año actual</option>
+                                  <option value="last-year">Año anterior</option>
+                                  <option value="custom">Personalizado</option>
+                              </select>
+                          </div>
+                      </div>
+                      
+                      <div class="form-row date-range" style="display: none;">
+                          <div class="form-group">
+                              <label for="startDate">Fecha inicio</label>
+                              <input type="date" id="startDate" name="startDate">
+                          </div>
+                          
+                          <div class="form-group">
+                              <label for="endDate">Fecha fin</label>
+                              <input type="date" id="endDate" name="endDate">
+                          </div>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label>Incluir en el reporte</label>
+                          <div class="checkbox-group">
+                              <div class="checkbox-item">
+                                  <input type="checkbox" id="includeCharts" name="include[]" value="charts" checked>
+                                  <label for="includeCharts">Gráficos</label>
+                              </div>
+                              <div class="checkbox-item">
+                                  <input type="checkbox" id="includeData" name="include[]" value="data" checked>
+                                  <label for="includeData">Datos tabulares</label>
+                              </div>
+                              <div class="checkbox-item">
+                                  <input type="checkbox" id="includeSummary" name="include[]" value="summary" checked>
+                                  <label for="includeSummary">Resumen ejecutivo</label>
+                              </div>
+                              <div class="checkbox-item">
+                                  <input type="checkbox" id="includeRawData" name="include[]" value="rawData">
+                                  <label for="includeRawData">Datos sin procesar</label>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="reportFormat">Formato</label>
+                          <select id="reportFormat" name="reportFormat" required>
+                              <option value="pdf">PDF</option>
+                              <option value="excel">Excel</option>
+                              <option value="csv">CSV</option>
+                              <option value="html">HTML</option>
+                          </select>
+                      </div>
+                      
+                      <div class="form-actions">
+                          <button type="submit" class="btn-primary">
+                              <i class="fas fa-file-alt"></i> Generar reporte
+                          </button>
+                          <button type="reset" class="btn-outline">
+                              <i class="fas fa-redo"></i> Restablecer
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </section>
+          
+          <!-- Statistics Section -->
+          <section class="dashboard-section" id="statistics-section">
+            <div class="section-header">
+                  <h2>Métricas clave</h2>
+              </div>
+              
+              <div class="stats-cards">
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-user-plus"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>15</h3>
+                          <p>Nuevos usuarios</p>
+                          <span class="trend positive">+25% vs período anterior</span>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-home"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>8</h3>
+                          <p>Nuevas propiedades</p>
+                          <span class="trend positive">+33% vs período anterior</span>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-door-open"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>75%</h3>
+                          <p>Tasa de ocupación</p>
+                          <span class="trend positive">+5% vs período anterior</span>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-money-bill-wave"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>$185,000</h3>
+                          <p>Ingreso promedio por habitación</p>
+                          <span class="trend positive">+8% vs período anterior</span>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-calendar-alt"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>6.2</h3>
+                          <p>Duración promedio (meses)</p>
+                          <span class="trend positive">+0.5 vs período anterior</span>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-sync"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>68%</h3>
+                          <p>Tasa de renovación</p>
+                          <span class="trend positive">+3% vs período anterior</span>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-search"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>1,250</h3>
+                          <p>Búsquedas en el sistema</p>
+                          <span class="trend positive">+15% vs período anterior</span>
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-icon">
+                          <i class="fas fa-star"></i>
+                      </div>
+                      <div class="stat-info">
+                          <h3>4.7</h3>
+                          <p>Satisfacción promedio (de 5)</p>
+                          <span class="trend positive">+0.2 vs período anterior</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="section-header">
+                  <h1>Estadísticas del Sistema</h1>
+                  <div class="section-filters">
+                      <label for="statsPeriod">Período:</label>
+                      <select id="statsPeriod">
+                          <option value="month">Este mes</option>
+                          <option value="quarter">Este trimestre</option>
+                          <option value="year">Este año</option>
+                          <option value="all">Todo el tiempo</option>
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="dashboard-charts tamañoestadistic">
+                  <div class="chart-container estadisticas1">
+                      <div class="chart-header">
+                          <h3>Crecimiento de usuarios</h3>
+                          <span class="status-badge active">+15%</span>
+                      </div>
+                      <canvas id="userGrowthChart"></canvas>
+                  </div>
+                  
+                  <div class="chart-container estadisticas2">
+                      <div class="chart-header">
+                          <h3>Propiedades por ubicación</h3>
+                      </div>
+                      <canvas id="propertiesLocationChart"></canvas>
+                  </div>
+                  <br>
+                  <div class="chart-container estadisticas3">
+                      <div class="chart-header">
+                          <h3>Ocupación de habitaciones</h3>
+                          <span class="status-badge active">75%</span>
+                      </div>
+                      <canvas id="roomOccupancyChart"></canvas>
+                  </div>
+                  
+                  <div class="chart-container estadisticas4">
+                      <div class="chart-header">
+                          <h3>Ingresos vs. Proyección</h3>
+                      </div>
+                      <canvas id="incomeProjectionChart"></canvas>
+                  </div>
+              </div>
+              
+              
+          </section>
+          
+          <!-- Settings Section -->
+          <section class="dashboard-section" id="settings-section">
+              <div class="section-header">
+                  <h1>Configuración del Sistema</h1>
+              </div>
+              
+              <div class="settings-container">
+                  <div class="settings-sidebar">
+                      <ul class="settings-nav">
+                          <li class="active" data-settings="general">
+                              <i class="fas fa-cog"></i> General
+                          </li>
+                          <li data-settings="users">
+                              <i class="fas fa-users"></i> Usuarios
+                          </li>
+                          <li data-settings="security">
+                              <i class="fas fa-shield-alt"></i> Seguridad
+                          </li>
+                          <li data-settings="notifications">
+                              <i class="fas fa-bell"></i> Notificaciones
+                          </li>
+                          <li data-settings="backup">
+                              <i class="fas fa-database"></i> Respaldo
+                          </li>
+                      </ul>
+                  </div>
+                  
+                  <div class="settings-content">
+                      <!-- General Settings -->
+                      <div class="settings-panel active" id="general-settings">
+                          <h2>Configuración general</h2>
+                          
+                          <form class="settings-form">
+                              <div class="form-group">
+                                  <label for="siteName">Nombre del sitio</label>
+                                  <input type="text" id="siteName" name="siteName" value="RentRooms">
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label for="siteDescription">Descripción del sitio</label>
+                                  <textarea id="siteDescription" name="siteDescription" rows="3">Sistema de arriendo por habitaciones para propietarios y arrendatarios.</textarea>
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label for="contactEmail">Email de contacto</label>
+                                  <input type="email" id="contactEmail" name="contactEmail" value="info@rentrooms.com">
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label for="systemCurrency">Moneda del sistema</label>
+                                  <select id="systemCurrency" name="systemCurrency">
+                                      <option value="CLP" selected>Peso Chileno (CLP)</option>
+                                      <option value="USD">Dólar Estadounidense (USD)</option>
+                                      <option value="EUR">Euro (EUR)</option>
+                                  </select>
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label for="systemCommission">Comisión del sistema (%)</label>
+                                  <input type="number" id="systemCommission" name="systemCommission" value="5" min="0" max="100">
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label>Mantenimiento del sistema</label>
+                                  <div class="toggle-switch">
+                                      <input type="checkbox" id="maintenanceMode" name="maintenanceMode">
+                                      <label for="maintenanceMode"></label>
+                                      <span>Modo de mantenimiento</span>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-actions">
+                                  <button type="submit" class="btn-primary">Guardar cambios</button>
+                                  <button type="button" class="btn-outline">Cancelar</button>
+                              </div>
+                          </form>
+                      </div>
+                      
+                      <!-- Other settings panels would go here -->
+                  </div>
+              </div>
+          </section>
+      </main>
+  </div>
+  
+  <!-- Modal para agregar usuario -->
+  <div class="modal" id="addUserModal">
+      <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>Agregar nuevo usuario</h2>
+          
+          <form id="addUserForm">
+              <div class="form-row">
+                  <div class="form-group">
+                      <label for="userName">Nombre completo</label>
+                      <input type="text" id="userName" name="userName" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="userEmail">Correo electrónico</label>
+                      <input type="email" id="userEmail" name="userEmail" required>
+                  </div>
+              </div>
+              
+              <div class="form-row">
+                  <div class="form-group">
+                      <label for="userPassword">Contraseña</label>
+                      <input type="password" id="userPassword" name="userPassword" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="confirmPassword">Confirmar contraseña</label>
+                      <input type="password" id="confirmPassword" name="confirmPassword" required>
+                  </div>
+              </div>
+              
+              <div class="form-row">
+                  <div class="form-group">
+                      <label for="userRole">Rol</label>
+                      <select id="userRole" name="userRole" required>
+                          <option value="">Seleccionar rol</option>
+                          <option value="admin">Administrador</option>
+                          <option value="landlord">Arrendador</option>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="userStatus">Estado</label>
+                      <select id="userStatus" name="userStatus" required>
+                          <option value="active">Activo</option>
+                          <option value="inactive">Inactivo</option>
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label for="userAvatar">Avatar</label>
+                  <input type="file" id="userAvatar" name="userAvatar" accept="image/*">
+              </div>
+              
+              <div class="form-actions">
+                  <button type="submit" class="btn-primary">Guardar usuario</button>
+                  <button type="button" class="btn-outline cancel-modal">Cancelar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+  
+  <!-- Modal para agregar propiedad -->
+  <div class="modal" id="addPropertyModal">
+      <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>Agregar nueva propiedad</h2>
+          
+          <form id="addPropertyForm">
+              <div class="form-row">
+                  <div class="form-group">
+                      <label for="propertyTitle">Título</label>
+                      <input type="text" id="propertyTitle" name="propertyTitle" placeholder="Ej: Casa en Santiago Centro" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="propertyOwner">Propietario</label>
+                      <select id="propertyOwner" name="propertyOwner" required>
+                          <option value="">Seleccionar propietario</option>
+                          <option value="1">Juan Pérez</option>
+                          <option value="2">María González</option>
+                          <option value="3">Carlos Rodríguez</option>
+                          <option value="4">Ana López</option>
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label for="propertyAddress">Dirección</label>
+                  <input type="text" id="propertyAddress" name="propertyAddress" placeholder="Dirección completa" required>
+              </div>
+              
+              <div class="form-row">
+                  <div class="form-group">
+                      <label for="propertyCity">Ciudad</label>
+                      <input type="text" id="propertyCity" name="propertyCity" value="Santiago" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="propertyCommune">Comuna</label>
+                      <select id="propertyCommune" name="propertyCommune" required>
+                          <option value="">Seleccionar comuna</option>
+                          <option value="santiago">Santiago Centro</option>
+                          <option value="providencia">Providencia</option>
+                          <option value="lascondes">Las Condes</option>
+                          <option value="nunoa">Ñuñoa</option>
+                          <option value="vitacura">Vitacura</option>
+                          <option value="other">Otra</option>
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="form-row">
+                  <div class="form-group">
+                      <label for="propertyRooms">Número de habitaciones</label>
+                      <input type="number" id="propertyRooms" name="propertyRooms" min="1" max="20" value="1" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="propertyBathrooms">Número de baños</label>
+                      <input type="number" id="propertyBathrooms" name="propertyBathrooms" min="1" max="10" value="1" required>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label for="propertyDescription">Descripción</label>
+                  <textarea id="propertyDescription" name="propertyDescription" rows="4" placeholder="Descripción detallada de la propiedad" required></textarea>
+              </div>
+              
+              <div class="form-group">
+                  <label for="propertyImages">Imágenes</label>
+                  <input type="file" id="propertyImages" name="propertyImages" accept="image/*" multiple>
+                  <p class="form-help">Puedes seleccionar múltiples imágenes (máximo 5)</p>
+              </div>
+              
+              <div class="form-group">
+                  <label>Servicios incluidos</label>
+                  <div class="checkbox-group">
+                      <div class="checkbox-item">
+                          <input type="checkbox" id="includeWater" name="services[]" value="water" checked>
+                          <label for="includeWater">Agua</label>
+                      </div>
+                      <div class="checkbox-item">
+                          <input type="checkbox" id="includeElectricity" name="services[]" value="electricity" checked>
+                          <label for="includeElectricity">Electricidad</label>
+                      </div>
+                      <div class="checkbox-item">
+                          <input type="checkbox" id="includeInternet" name="services[]" value="internet" checked>
+                          <label for="includeInternet">Internet</label>
+                      </div>
+                      <div class="checkbox-item">
+                          <input type="checkbox" id="includeGas" name="services[]" value="gas">
+                          <label for="includeGas">Gas</label>
+                      </div>
+                      <div class="checkbox-item">
+                          <input type="checkbox" id="includeCleaning" name="services[]" value="cleaning">
+                          <label for="includeCleaning">Limpieza</label>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="form-actions">
+                  <button type="submit" class="btn-primary">Guardar propiedad</button>
+                  <button type="button" class="btn-outline cancel-modal">Cancelar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+  
+  <!-- Notificaciones dropdown -->
+  <div class="notifications-dropdown" id="notificationsDropdown" style="display: none;">
+      <div class="notifications-header">
+          <h3>Notificaciones</h3>
+          <button class="mark-all-read">Marcar todas como leídas</button>
+      </div>
+      
+      <div class="notifications-list">
+          <div class="notification-item unread">
+              <div class="notification-icon new-user">
+                  <i class="fas fa-user-plus"></i>
+              </div>
+              <div class="notification-content">
+                  <p>Nuevo usuario registrado: <strong>Roberto Méndez</strong></p>
+                  <span class="notification-time">Hace 1 hora</span>
+              </div>
+              <button class="notification-action">
+                  <i class="fas fa-ellipsis-v"></i>
+              </button>
+          </div>
+          
+          <div class="notification-item unread">
+              <div class="notification-icon new-property">
+                  <i class="fas fa-home"></i>
+              </div>
+              <div class="notification-content">
+                  <p>Nueva propiedad agregada por <strong>Juan Pérez</strong></p>
+                  <span class="notification-time">Hace 3 horas</span>
+              </div>
+              <button class="notification-action">
+                  <i class="fas fa-ellipsis-v"></i>
+              </button>
+          </div>
+          
+          <div class="notification-item unread">
+              <div class="notification-icon payment">
+                  <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <div class="notification-content">
+                  <p>Nuevo pago registrado: <strong>$220,000</strong></p>
+                  <span class="notification-time">Hace 5 horas</span>
+              </div>
+              <button class="notification-action">
+                  <i class="fas fa-ellipsis-v"></i>
+              </button>
+          </div>
+          
+          <div class="notification-item">
+              <div class="notification-icon issue">
+                  <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div class="notification-content">
+                  <p>Problema reportado con el sistema de pagos</p>
+                  <span class="notification-time">Ayer</span>
+              </div>
+              <button class="notification-action">
+                  <i class="fas fa-ellipsis-v"></i>
+              </button>
+          </div>
+      </div>
+      
+      <div class="notifications-footer">
+          <a href="#" class="view-all-notifications">Ver todas las notificaciones</a>
+      </div>
+  </div>
+  
+  <!-- User dropdown -->
+  <div class="user-dropdown" id="userDropdown" style="display: none;">
+      <div class="user-dropdown-header">
+          <img src="../../../assets/img/admin-avatar.jpg" alt="Admin Sistema">
+          <div>
+              <h4>Admin Sistema</h4>
+              <p>admin@rentrooms.com</p>
+          </div>
+      </div>
+      
+      <div class="user-dropdown-menu">
+          <a href="#" class="dropdown-item">
+              <i class="fas fa-user"></i> Mi perfil
+          </a>
+          <a href="#" class="dropdown-item">
+              <i class="fas fa-cog"></i> Configuración
+          </a>
+          <a href="#" class="dropdown-item">
+              <i class="fas fa-bell"></i> Notificaciones
+          </a>
+          <a href="#" class="dropdown-item">
+              <i class="fas fa-question-circle"></i> Ayuda
+          </a>
+      </div>
+      
+      <div class="user-dropdown-footer">
+          <a href="../../../index.html" class="logout-btn">
+              <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+          </a>
+      </div>
+  </div>
+  
+  <!-- Toast notifications -->
+  <div class="toast-container" id="toastContainer">
+      <!-- Toasts will be added dynamically -->
+  </div>
+  
+  <!-- Scripts -->
+  <script src="../../js/admin.js"></script>
+  <script src="../../js/main-functions.js"></script>
+
+  <script src="../../js/charts.js"></script>
+</body>
+</html>

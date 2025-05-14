@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentRooms - Sistema de Arriendo por Habitaciones</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>RentRooms</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="assets/auth/login.html" class="btn-login">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="carousel-section" id="propiedades">
+        <div class="container">            
+            <div class="carousel-container">
+                <button class="carousel-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                
+                <div class="carousel">
+                    <div class="carousel-item active">
+                        <div class="property-card">
+                            <div class="property-image">
+                                <img src="assets/css/img/santiago.jpg" alt="Casa en Santiago Centro">
+                                <div class="property-badge">5 habitaciones</div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa en Santiago Centro</h3>
+                                <p class="property-location"><i class="fas fa-map-marker-alt"></i> Santiago Centro</p>
+                                <p class="property-description">Amplia casa con 5 habitaciones, 3 baños, cocina equipada y sala de estar común.</p>
+                                <div class="property-buttons">
+                                    <button class="btn-secondary view-rooms" data-id="1">Ver habitaciones</button>
+                                    <button class="btn-outline contact-owner" data-id="1">Contactar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="property-card">
+                            <div class="property-image">
+                                <img src="assets/css/img/depa.jpg" alt="Departamento en Providencia">
+                                <div class="property-badge">3 habitaciones</div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Departamento en Providencia</h3>
+                                <p class="property-location"><i class="fas fa-map-marker-alt"></i> Providencia</p>
+                                <p class="property-description">Moderno departamento con 3 habitaciones, 2 baños y excelente ubicación.</p>
+                                <div class="property-buttons">
+                                    <button class="btn-secondary view-rooms" data-id="2">Ver habitaciones</button>
+                                    <button class="btn-outline contact-owner" data-id="2">Contactar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="property-card">
+                            <div class="property-image">
+                                <img src="assets/css/img/condes.jpg" alt="Casa en Las Condes">
+                                <div class="property-badge">4 habitaciones</div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa en Las Condes</h3>
+                                <p class="property-location"><i class="fas fa-map-marker-alt"></i> Las Condes</p>
+                                <p class="property-description">Hermosa casa con 4 habitaciones, jardín y terraza común para los residentes.</p>
+                                <div class="property-buttons">
+                                    <button class="btn-secondary view-rooms" data-id="3">Ver habitaciones</button>
+                                    <button class="btn-outline contact-owner" data-id="3">Contactar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Servicios que ofrecemos</h2>
+                <p>Sistema completo de gestión de arriendos para propietarios y arrendatarios</p>
+                <a href="assets/auth/login.html" class="btn-primary">Comenzar ahora</a>
+            </div>
+        </div>
+    </section>
+    <!-- Modal para visualizar habitaciones -->
+    <div class="modal" id="roomsModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Habitaciones disponibles</h2>
+            
+            <div class="floor-plan">
+                <img src="assets/css/img/plano1.png" alt="Plano de la casa">
+                
+                <!-- Botones flotantes para las habitaciones -->
+                <button class="room-btn available" style="top: 37%;left: 17%;" data-room="1">1</button>
+                <button class="room-btn occupied" style="top: 31%;left: 33%;" data-room="2">2</button>
+                <button class="room-btn available" style="top: 31%;left: 58%;" data-room="3">3</button>
+                <button class="room-btn available" style="top: 60%;left: 59%;" data-room="4">4</button>
+                <button class="room-btn occupied" style="top: 32%;left: 74%;" data-room="5">5</button>
+            </div>
+            
+            <div class="room-details" id="roomDetails">
+                <h3>Selecciona una habitación en el plano</h3>
+                <p>Haz clic en los números para ver detalles de cada habitación</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para contactar al arrendador -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contactar al arrendador</h2>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">Enviar mensaje</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RentRooms</h3>
+                    <p>Sistema de arriendo por habitaciones para propietarios y arrendatarios.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="#propiedades">Propiedades</a></li>
+                        <li><a href="assets/Vista/auth/login.html">Iniciar sesión</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> info@rentrooms.com</p>
+                    <p><i class="fas fa-phone"></i> +56 9 1234 5678</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 RentRooms. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  <script src="assets/js/main-functions.js"></script>
+
+</body>
+</html>

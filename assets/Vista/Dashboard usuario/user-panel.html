@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario - ST-Rental</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body tamañobody">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>ST-Rental</h2>
+                <span class="user-role">Arrendador</span>
+            </div>
+            
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    <img src="../../css/img/avatar-1.png" alt="Avatar de usuario">
+                </div>
+                <div class="user-info">
+                    <h3>Damian Jinel</h3>
+                    <p>lynkrookie@gmail.com</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-section="properties">
+                            <i class="fas fa-home"></i>
+                            <span>Propiedades</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-section="rooms">
+                            <i class="fas fa-door-open"></i>
+                            <span>Habitaciones</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-section="tenants">
+                            <i class="fas fa-users"></i>
+                            <span>Arrendatarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-section="finances">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Finanzas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-section="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Configuración</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../../index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar sesión</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar...">
+                </div>
+                
+                <div class="header-actions">
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    
+                    <div class="header-user">
+                        <img src="../../css/img/avatar-1.png" alt="Avatar de usuario">
+                        <span>Damian Jinel</span>
+                    </div>
+                </div>
+            </header>
+            <!-- Dashboard Section -->
+            <section class="dashboard-section active" id="dashboard-section">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <p>Bienvenido de nuevo, Juan. Aquí tienes un resumen de tus propiedades.</p>
+                </div>
+                
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3</h3>
+                            <p>Propiedades</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>Habitaciones</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Arrendatarios</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$1,250,000</h3>
+                            <p>Ingresos mensuales</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-charts">
+                    <div class="chart-container tamañoestadisticas" ">
+                        <div class="chart-header">
+                            <h3>Ingresos mensuales</h3>
+                            <div class="chart-actions">
+                                <select id="incomeChartYear">
+                                    <option value="2025">2025</option>
+                                    <option value="2024">2024</option>
+                                </select>
+                            </div>
+                        </div>
+                        <canvas id="incomeChart"></canvas>
+                    </div>
+                    
+                  <div class="chart-container tamañoestadisticas2" ">
+                        <div class="chart-header">
+                            <h3>Distribución de ingresos</h3>
+                            <div class="chart-actions">
+                                <select id="distributionChartProperty">
+                                    <option value="all">Todas las propiedades</option>
+                                    <option value="1">Casa en Santiago Centro</option>
+                                    <option value="2">Departamento en Providencia</option>
+                                    <option value="3">Casa en Las Condes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <canvas id="distributionChart" width="320" height="320" style="display: block; box-sizing: border-box; height: 256px; width: 256px;"></canvas>
+                    </div>
+                </div>
+                
+                <div class="recent-activity">
+                    <div class="section-header">
+                        <h2>Actividad reciente</h2>
+                        <a href="#" class="view-all">Ver todo</a>
+                    </div>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon payment">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>Pago recibido</h4>
+                                <p>Carlos Gómez ha pagado $180,000 por la habitación #3.</p>
+                                <span class="activity-time">Hace 2 horas</span>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon new-tenant">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>Nuevo arrendatario</h4>
+                                <p>María López ha reservado la habitación #5.</p>
+                                <span class="activity-time">Ayer</span>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon maintenance">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>Solicitud de mantenimiento</h4>
+                                <p>Pedro Sánchez ha reportado un problema en la habitación #2.</p>
+                                <span class="activity-time">Hace 2 días</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Properties Section -->
+            <section class="dashboard-section" id="properties-section">
+                <div class="section-header">
+                    <h1>Mis Propiedades</h1>
+                    <button class="btn-primary add-new">
+                        <i class="fas fa-plus"></i> Agregar propiedad
+                    </button>
+                </div>
+                
+                <div class="properties-list habitaciones">
+                    <div class="property-item ">
+                        <div class="property-image">
+                            <img src="../../css/img/santiago.jpg" alt="Casa en Santiago Centro">
+                            <div class="property-badge">5 habitaciones</div>
+                        </div>
+                        <div class="property-details">
+                            <h3>Casa en Santiago Centro</h3>
+                            <p class="property-address"><i class="fas fa-map-marker-alt"></i> Av. Libertador 1234, Santiago Centro</p>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-door-open"></i>
+                                    <span>5 habitaciones</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>3 ocupadas</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span>$750,000 / mes</span>
+                                </div>
+                            </div>
+                            <div class="property-actions">
+                                <button class="btn-secondary">
+                                    <i class="fas fa-door-open"></i> Ver habitaciones
+                                </button>
+                                <button class="btn-outline">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                                <button class="btn-danger">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="property-item">
+                        <div class="property-image">
+                            <img src="../../css/img/depa.jpg" alt="Departamento en Providencia">
+                            <div class="property-badge">3 habitaciones</div>
+                        </div>
+                        <div class="property-details">
+                            <h3>Departamento en Providencia</h3>
+                            <p class="property-address"><i class="fas fa-map-marker-alt"></i> Calle Nueva 567, Providencia</p>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-door-open"></i>
+                                    <span>3 habitaciones</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>2 ocupadas</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span>$500,000 / mes</span>
+                                </div>
+                            </div>
+                            <div class="property-actions">
+                                <button class="btn-secondary">
+                                    <i class="fas fa-door-open"></i> Ver habitaciones
+                                </button>
+                                <button class="btn-outline">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                                <button class="btn-danger">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="property-item">
+                        <div class="property-image">
+                            <img src="../../css/img/condes.jpg" alt="Casa en Las Condes">
+                            <div class="property-badge">4 habitaciones</div>
+                        </div>
+                        <div class="property-details">
+                            <h3>Casa en Las Condes</h3>
+                            <p class="property-address"><i class="fas fa-map-marker-alt"></i> Av. Principal 789, Las Condes</p>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-door-open"></i>
+                                    <span>4 habitaciones</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>3 ocupadas</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span>$650,000 / mes</span>
+                                </div>
+                            </div>
+                            <div class="property-actions">
+                                <button class="btn-secondary">
+                                    <i class="fas fa-door-open"></i> Ver habitaciones
+                                </button>
+                                <button class="btn-outline">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                                <button class="btn-danger">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Rooms Section -->
+            <section class="dashboard-section" id="rooms-section">
+                <div class="section-header">
+                    <h1>Habitaciones</h1>
+                    <div class="section-filters">
+                        <select id="propertyFilter">
+                            <option value="all">Todas las propiedades</option>
+                            <option value="1">Casa en Santiago Centro</option>
+                            <option value="2">Departamento en Providencia</option>
+                            <option value="3">Casa en Las Condes</option>
+                        </select>
+                        <select id="statusFilter">
+                            <option value="all">Todos los estados</option>
+                            <option value="available">Disponible</option>
+                            <option value="occupied">Ocupada</option>
+                        </select>
+                        <button class="btn-primary add-new">
+                            <i class="fas fa-plus"></i> Agregar habitación
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="rooms-grid">
+                    <div class="room-card available">
+                        <div class="room-header">
+                            <h3>Habitación #1</h3>
+                            <span class="room-status available">Disponible</span>
+                        </div>
+                        <div class="room-image">
+                            <img src="../../../assets/img/room1.jpg" alt="Habitación #1">
+                        </div>
+                        <div class="room-details">
+                            <p class="room-property">Casa en Santiago Centro</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-ruler-combined"></i> 15m²</span>
+                                <span><i class="fas fa-bath"></i> Baño privado</span>
+                                <span><i class="fas fa-wifi"></i> Wi-Fi</span>
+                            </div>
+                            <div class="room-price">
+                                <h4>$180,000</h4>
+                                <span>por mes</span>
+                            </div>
+                            <div class="room-actions">
+                                <button class="btn-secondary">
+                                    <i class="fas fa-user-plus"></i> Asignar arrendatario
+                                </button>
+                                <button class="btn-outline">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="room-card occupied">
+                        <div class="room-header">
+                            <h3>Habitación #2</h3>
+                            <span class="room-status occupied">Ocupada</span>
+                        </div>
+                        <div class="room-image">
+                            <img src="../../../assets/img/room2.jpg" alt="Habitación #2">
+                        </div>
+                        <div class="room-details">
+                            <p class="room-property">Casa en Santiago Centro</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-ruler-combined"></i> 18m²</span>
+                                <span><i class="fas fa-bath"></i> Baño privado</span>
+                                <span><i class="fas fa-wifi"></i> Wi-Fi</span>
+                            </div>
+                            <div class="room-price">
+                                <h4>$200,000</h4>
+                                <span>por mes</span>
+                            </div>
+                            <div class="room-tenant">
+                                <img src="../../../assets/img/tenant1.jpg" alt="Carlos Gómez">
+                                <div>
+                                    <h5>Carlos Gómez</h5>
+                                    <p>Hasta: 15/12/2025</p>
+                                </div>
+                            </div>
+                            <div class="room-actions">
+                                <button class="btn-secondary">
+                                    <i class="fas fa-eye"></i> Ver detalles
+                                </button>
+                                <button class="btn-outline">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="room-card available">
+                        <div class="room-header">
+                            <h3>Habitación #3</h3>
+                            <span class="room-status available">Disponible</span>
+                        </div>
+                        <div class="room-image">
+                            <img src="../../../assets/img/room3.jpg" alt="Habitación #3">
+                        </div>
+                        <div class="room-details">
+                            <p class="room-property">Departamento en Providencia</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-ruler-combined"></i> 12m²</span>
+                                <span><i class="fas fa-bath"></i> Baño compartido</span>
+                                <span><i class="fas fa-wifi"></i> Wi-Fi</span>
+                            </div>
+                            <div class="room-price">
+                                <h4>$150,000</h4>
+                                <span>por mes</span>
+                            </div>
+                            <div class="room-actions">
+                                <button class="btn-secondary">
+                                    <i class="fas fa-user-plus"></i> Asignar arrendatario
+                                </button>
+                                <button class="btn-outline">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="room-card occupied">
+                        <div class="room-header">
+                            <h3>Habitación #4</h3>
+                            <span class="room-status occupied">Ocupada</span>
+                        </div>
+                        <div class="room-image">
+                            <img src="../../../assets/img/room4.jpg" alt="Habitación #4">
+                        </div>
+                        <div class="room-details">
+                            <p class="room-property">Casa en Las Condes</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-ruler-combined"></i> 20m²</span>
+                                <span><i class="fas fa-bath"></i> Baño privado</span>
+                                <span><i class="fas fa-wifi"></i> Wi-Fi</span>
+                            </div>
+                            <div class="room-price">
+                                <h4>$220,000</h4>
+                                <span>por mes</span>
+                            </div>
+                            <div class="room-tenant">
+                                <img src="../../../assets/img/tenant2.jpg" alt="Ana Martínez">
+                                <div>
+                                    <h5>Ana Martínez</h5>
+                                    <p>Hasta: 30/09/2025</p>
+                                </div>
+                            </div>
+                            <div class="room-actions">
+                                <button class="btn-secondary">
+                                    <i class="fas fa-eye"></i> Ver detalles
+                                </button>
+                                <button class="btn-outline">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tenants Section -->
+            <section class="dashboard-section" id="tenants-section">
+                <div class="section-header">
+                    <h1>Arrendatarios</h1>
+                    <button class="btn-primary add-new">
+                        <i class="fas fa-plus"></i> Agregar arrendatario
+                    </button>
+                </div>
+                
+                <div class="tenants-table-container">
+                    <table class="tenants-table">
+                        <thead>
+                            <tr>
+                                <th>Arrendatario</th>
+                                <th>Habitación</th>
+                                <th>Propiedad</th>
+                                <th>Fecha inicio</th>
+                                <th>Fecha término</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="tenant-info">
+                                        <img src="../../css/img/avatar-4.png" alt="Carlos Gómez">
+                                        <div>
+                                            <h4>Carlos Gómez</h4>
+                                            <p>carlos.gomez@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Habitación #2</td>
+                                <td>Casa en Santiago Centro</td>
+                                <td>15/06/2025</td>
+                                <td>15/12/2025</td>
+                                <td>$200,000 / mes</td>
+                                <td><span class="status-badge active">Activo</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="tenant-info">
+                                        <img src="../../css/img/avatar-2.png"" alt="Ana Martínez">
+                                        <div>
+                                            <h4>Ana Martínez</h4>
+                                            <p>ana.martinez@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Habitación #4</td>
+                                <td>Casa en Las Condes</td>
+                                <td>01/04/2025</td>
+                                <td>30/09/2025</td>
+                                <td>$220,000 / mes</td>
+                                <td><span class="status-badge active">Activo</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="tenant-info">
+                                        <img src="../../css/img/avatar-1.png" alt="Pedro Sánchez">
+                                        <div>
+                                            <h4>Pedro Sánchez</h4>
+                                            <p>pedro.sanchez@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Habitación #5</td>
+                                <td>Casa en Santiago Centro</td>
+                                <td>10/05/2025</td>
+                                <td>10/11/2025</td>
+                                <td>$190,000 / mes</td>
+                                <td><span class="status-badge active">Activo</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="tenant-info">
+                                        <img src="../../css/img/avatar-2.png" alt="Laura Torres">
+                                        <div>
+                                            <h4>Laura Torres</h4>
+                                            <p>laura.torres@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Habitación #1</td>
+                                <td>Departamento en Providencia</td>
+                                <td>20/02/2025</td>
+                                <td>20/05/2025</td>
+                                <td>$170,000 / mes</td>
+                                <td><span class="status-badge expired">Finalizado</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Finances Section -->
+            <section class="dashboard-section" id="finances-section">
+                <div class="section-header">
+                    <h1>Finanzas</h1>
+                    <div class="date-filter">
+                        <label for="financeMonth">Mes:</label>
+                        <select id="financeMonth">
+                            <option value="5">Mayo 2025</option>
+                            <option value="4">Abril 2025</option>
+                            <option value="3">Marzo 2025</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="finance-summary">
+                    <div class="summary-card income">
+                        <div class="summary-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Ingresos totales</h3>
+                            <p class="amount">$1,250,000</p>
+                            <p class="trend positive">+5.2% vs mes anterior</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card expenses">
+                        <div class="summary-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Gastos</h3>
+                            <p class="amount">$250,000</p>
+                            <p class="trend negative">+2.1% vs mes anterior</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card profit">
+                        <div class="summary-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Ganancia neta</h3>
+                            <p class="amount">$1,000,000</p>
+                            <p class="trend positive">+6.3% vs mes anterior</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card occupancy">
+                        <div class="summary-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Tasa de ocupación</h3>
+                            <p class="amount">75%</p>
+                            <p class="trend positive">+8.3% vs mes anterior</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="finance-charts tamañofinanzas">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Ingresos por propiedad</h3>
+                        </div>
+                        <canvas id="propertyIncomeChart"></canvas>
+                    </div>
+                    <br>
+                    <div class="chart-container tamañofinanzas2">
+                        <div class="chart-header">
+                            <h3>Ingresos diarios (Mayo 2025)</h3>
+                        </div>
+                        <canvas id="dailyIncomeChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="transactions">
+                    <div class="section-header">
+                        <h2>Transacciones recientes</h2>
+                        <a href="#" class="view-all">Ver todas</a>
+                    </div>
+                    
+                    <div class="transactions-table-container">
+                        <table class="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Descripción</th>
+                                    <th>Arrendatario</th>
+                                    <th>Propiedad</th>
+                                    <th>Monto</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>12/05/2025</td>
+                                    <td>Pago de arriendo - Mayo</td>
+                                    <td>Carlos Gómez</td>
+                                    <td>Casa en Santiago Centro</td>
+                                    <td class="amount positive">+$200,000</td>
+                                    <td><span class="status-badge completed">Completado</span></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>10/05/2025</td>
+                                    <td>Pago de arriendo - Mayo</td>
+                                    <td>Pedro Sánchez</td>
+                                    <td>Casa en Santiago Centro</td>
+                                    <td class="amount positive">+$190,000</td>
+                                    <td><span class="status-badge completed">Completado</span></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>08/05/2025</td>
+                                    <td>Mantenimiento plomería</td>
+                                    <td>-</td>
+                                    <td>Casa en Santiago Centro</td>
+                                    <td class="amount negative">-$45,000</td>
+                                    <td><span class="status-badge completed">Completado</span></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>05/05/2025</td>
+                                    <td>Pago de arriendo - Mayo</td>
+                                    <td>Ana Martínez</td>
+                                    <td>Casa en Las Condes</td>
+                                    <td class="amount positive">+$220,000</td>
+                                    <td><span class="status-badge completed">Completado</span></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>03/05/2025</td>
+                                    <td>Pago de servicios</td>
+                                    <td>-</td>
+                                    <td>Todas las propiedades</td>
+                                    <td class="amount negative">-$120,000</td>
+                                    <td><span class="status-badge completed">Completado</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Settings Section -->
+            <section class="dashboard-section" id="settings-section">
+                <div class="section-header">
+                    <h1>Configuración</h1>
+                </div>
+                
+                <div class="settings-container">
+                    <div class="settings-sidebar">
+                        <ul class="settings-nav">
+                            <li class="active" data-settings="profile">
+                                <i class="fas fa-user"></i> Perfil
+                            </li>
+                            <li data-settings="account">
+                                <i class="fas fa-lock"></i> Cuenta
+                            </li>
+                            <li data-settings="notifications">
+                                <i class="fas fa-bell"></i> Notificaciones
+                            </li>
+                            <li data-settings="payments">
+                                <i class="fas fa-credit-card"></i> Métodos de pago
+                            </li>
+                            <li data-settings="preferences">
+                                <i class="fas fa-sliders-h"></i> Preferencias
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="settings-content">
+                        <!-- Profile Settings -->
+                        <div class="settings-panel active" id="profile-settings">
+                            <h2>Información de perfil</h2>
+                            
+                            <form class="settings-form">
+                                <div class="profile-avatar">
+                                    <img src="../../../assets/img/user-avatar.jpg" alt="Avatar de usuario">
+                                    <div class="avatar-actions">
+                                        <button type="button" class="btn-secondary">Cambiar foto</button>
+                                        <button type="button" class="btn-outline">Eliminar</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">Nombre</label>
+                                        <input type="text" id="firstName" name="firstName" value="Juan">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="lastName">Apellido</label>
+                                        <input type="text" id="lastName" name="lastName" value="Pérez">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico</label>
+                                    <input type="email" id="email" name="email" value="juan.perez@email.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Teléfono</label>
+                                    <input type="tel" id="phone" name="phone" value="+56 9 1234 5678">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="address">Dirección</label>
+                                    <input type="text" id="address" name="address" value="Av. Principal 123, Santiago">
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Guardar cambios</button>
+                                    <button type="button" class="btn-outline">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Account Settings -->
+                        <div class="settings-panel" id="account-settings">
+                            <h2>Configuración de cuenta</h2>
+                            
+                            <form class="settings-form">
+                                <div class="form-group">
+                                    <label for="currentPassword">Contraseña actual</label>
+                                    <input type="password" id="currentPassword" name="currentPassword">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="newPassword">Nueva contraseña</label>
+                                    <input type="password" id="newPassword" name="newPassword">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirmar nueva contraseña</label>
+                                    <input type="password" id="confirmPassword" name="confirmPassword">
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Actualizar contraseña</button>
+                                </div>
+                                
+                                <div class="divider"></div>
+                                
+                                <h3>Sesiones activas</h3>
+                                
+                                <div class="sessions-list">
+                                    <div class="session-item current">
+                                        <div class="session-info">
+                                            <i class="fas fa-laptop"></i>
+                                            <div>
+                                                <h4>Chrome en Windows</h4>
+                                                <p>Santiago, Chile - Activo ahora</p>
+                                            </div>
+                                        </div>
+                                        <span class="session-badge">Actual</span>
+                                    </div>
+                                    
+                                    <div class="session-item">
+                                        <div class="session-info">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            <div>
+                                                <h4>Safari en iPhone</h4>
+                                                <p>Santiago, Chile - Hace 2 días</p>
+                                            </div>
+                                        </div>
+                                        <button class="btn-outline btn-small">Cerrar sesión</button>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn-danger">Cerrar todas las sesiones</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Other settings panels would go here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Modal para agregar propiedad -->
+    <div class="modal" id="addPropertyModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Agregar nueva propiedad</h2>
+            
+            <form id="addPropertyForm">
+                <div class="form-group">
+                    <label for="propertyName">Nombre de la propiedad</label>
+                    <input type="text" id="propertyName" name="propertyName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="propertyAddress">Dirección</label>
+                    <input type="text" id="propertyAddress" name="propertyAddress" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="propertyRooms">Número de habitaciones</label>
+                        <input type="number" id="propertyRooms" name="propertyRooms" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="propertyBathrooms">Número de baños</label>
+                        <input type="number" id="propertyBathrooms" name="propertyBathrooms" min="1" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="propertyDescription">Descripción</label>
+                    <textarea id="propertyDescription" name="propertyDescription" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="propertyImage">Imagen principal</label>
+                    <input type="file" id="propertyImage" name="propertyImage" accept="image/*" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Guardar propiedad</button>
+                    <button type="button" class="btn-outline cancel-modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal para agregar habitación -->
+    <div class="modal" id="addRoomModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Agregar nueva habitación</h2>
+            
+            <form id="addRoomForm">
+                <div class="form-group">
+                    <label for="roomProperty">Propiedad</label>
+                    <select id="roomProperty" name="roomProperty" required>
+                        <option value="">Seleccionar propiedad</option>
+                        <option value="1">Casa en Santiago Centro</option>
+                        <option value="2">Departamento en Providencia</option>
+                        <option value="3">Casa en Las Condes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roomNumber">Número de habitación</label>
+                    <input type="text" id="roomNumber" name="roomNumber" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="roomSize">Tamaño (m²)</label>
+                        <input type="number" id="roomSize" name="roomSize" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="roomPrice">Precio mensual</label>
+                        <div class="price-input">
+                            <span>$</span>
+                            <input type="number" id="roomPrice" name="roomPrice" min="1" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Características</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="privateBathroom" name="features[]" value="privateBathroom">
+                            <label for="privateBathroom">Baño privado</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="wifi" name="features[]" value="wifi">
+                            <label for="wifi">Wi-Fi</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="furnished" name="features[]" value="furnished">
+                            <label for="furnished">Amoblada</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="closet" name="features[]" value="closet">
+                            <label for="closet">Closet</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="tv" name="features[]" value="tv">
+                            <label for="tv">TV</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roomDescription">Descripción</label>
+                    <textarea id="roomDescription" name="roomDescription" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roomImage">Imagen de la habitación</label>
+                    <input type="file" id="roomImage" name="roomImage" accept="image/*" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Guardar habitación</button>
+                    <button type="button" class="btn-outline cancel-modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal para agregar arrendatario -->
+    <div class="modal" id="addTenantModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Agregar nuevo arrendatario</h2>
+            
+            <form id="addTenantForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tenantName">Nombre completo</label>
+                        <input type="text" id="tenantName" name="tenantName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tenantEmail">Correo electrónico</label>
+                        <input type="email" id="tenantEmail" name="tenantEmail" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tenantPhone">Teléfono</label>
+                        <input type="tel" id="tenantPhone" name="tenantPhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tenantId">Documento de identidad</label>
+                        <input type="text" id="tenantId" name="tenantId" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tenantIdImage">Imagen de documento de identidad</label>
+                    <input type="file" id="tenantIdImage" name="tenantIdImage" accept="image/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tenantPhoto">Foto del arrendatario</label>
+                    <input type="file" id="tenantPhoto" name="tenantPhoto" accept="image/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tenantBackground">Antecedentes (PDF)</label>
+                    <input type="file" id="tenantBackground" name="tenantBackground" accept=".pdf" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tenantProperty">Propiedad</label>
+                    <select id="tenantProperty" name="tenantProperty" required>
+                        <option value="">Seleccionar propiedad</option>
+                        <option value="1">Casa en Santiago Centro</option>
+                        <option value="2">Departamento en Providencia</option>
+                        <option value="3">Casa en Las Condes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tenantRoom">Habitación</label>
+                    <select id="tenantRoom" name="tenantRoom" required>
+                        <option value="">Seleccionar habitación</option>
+                        <option value="1">Habitación #1</option>
+                        <option value="3">Habitación #3</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">Fecha de inicio</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="endDate">Fecha de término</label>
+                        <input type="date" id="endDate" name="endDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentType">Método de cobro</label>
+                    <select id="paymentType" name="paymentType" required>
+                        <option value="monthly">Mensual</option>
+                        <option value="daily">Diario</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="dailyRateGroup" style="display: none;">
+                    <label for="dailyRate">Monto diario</label>
+                    <div class="price-input">
+                        <span>$</span>
+                        <input type="number" id="dailyRate" name="dailyRate" min="1">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="totalAmount">Monto total</label>
+                    <div class="price-input">
+                        <span>$</span>
+                        <input type="number" id="totalAmount" name="totalAmount" readonly>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Guardar arrendatario</button>
+                    <button type="button" class="btn-outline cancel-modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../js/dashboard.js"></script>
+  <script src="../../js/main-functions.js"></script>
+
+    <script src="../../js/charts.js"></script>
+</body>
+</html>
