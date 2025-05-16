@@ -1,63 +1,77 @@
-
-
-.tamañoestadistic{
-        zoom: 109.1%;
+.tamañoestadistic {
+    zoom: 109.1%;
 }
-.estadisticas1{
-        zoom: 1.1;
+
+.estadisticas1 {
+    zoom: 1.1;
 }
-.estadisticas2{
-width: 26rem;
+
+.estadisticas2 {
+    width: 26rem;
     margin-left: 0rem;
     margin-top: 0rem;
     zoom: 0.9;
 }
-.estadisticas3{
-     zoom: 1.1;
-}.estadisticas4{
-width: 40.5rem;
+
+.estadisticas3 {
+    zoom: 1.1;
+}
+
+.estadisticas4 {
+    width: 40.5rem;
     margin-left: 0rem;
     margin-top: -27rem;
     zoom: 0.9;
 }
-.tamañosistemas{
+
+.tamañosistemas {
     width: 40rem;
 }
-.tamañosistemas2{
+
+.tamañosistemas2 {
     width: 21rem;
     margin-left: 0rem;
 }
-.tamañofinanzas{
+
+.tamañofinanzas {
     width: 35rem;
 }
-.tamañofinanzas2{
+
+.tamañofinanzas2 {
     width: 35rem;
     margin-left: 37rem;
     margin-top: -23.3rem;
 }
-.tamañofinanzas3{
+
+.tamañofinanzas3 {
     width: 40rem;
 
 }
-.tamañofinanzas4{
+
+.tamañofinanzas4 {
     width: 26rem;
     margin-left: 46rem;
     margin-top: -28.5rem;
     zoom: 0.9;
 }
-.habitaciones{
+
+.habitaciones {
     zoom: 0.9;
 }
-.tamañobody{
-    zoom:0.9;
+
+.tamañobody {
+    zoom: 0.9;
 }
-.tamañoestadisticas{
+
+.tamañoestadisticas {
     width: 40rem;
 
 }
-.tamañoestadisticas2{
+
+.tamañoestadisticas2 {
     width: 20rem;
 }
+
 /* Dashboard Styles */
 .dashboard-body {
     background-color: var(--body-bg);
@@ -1061,11 +1075,11 @@ width: 40.5rem;
     transition: var(--transition);
 }
 
-.toggle-switch input:checked + label {
+.toggle-switch input:checked+label {
     background-color: var(--primary-color);
 }
 
-.toggle-switch input:checked + label::after {
+.toggle-switch input:checked+label::after {
     transform: translateX(24px);
 }
 
@@ -1156,67 +1170,92 @@ width: 40.5rem;
 }
 
 @media (max-width: 992px) {
+    .tamañosistemas {
+        width: 44rem;
+
+    }
+
+    .tamañosistemas2 {
+        width: 44rem;
+
+    }
+
+    .tamañofinanzas4 {
+    width: 51rem;
+    margin-left: 0rem;
+    margin-top: -4.5rem;
+    zoom: 0.9;
+}
+    .tenants-table-container,
+    .transactions-table-container {
+        overflow-x: auto;
+        zoom: 0.9;
+    }
     .sidebar {
         width: 80px;
         overflow: hidden;
     }
-    
-    .sidebar-header h2, .user-role, .user-info, .sidebar-nav a span, .logout-btn span {
+
+    .sidebar-header h2,
+    .user-role,
+    .user-info,
+    .sidebar-nav a span,
+    .logout-btn span {
         display: none;
     }
-    
+
     .sidebar-user {
         justify-content: center;
         padding: 1rem;
     }
-    
+
     .sidebar-nav a {
         justify-content: center;
         padding: 1rem;
     }
-    
+
     .sidebar-nav a i {
         margin-right: 0;
         font-size: 1.25rem;
     }
-    
+
     .logout-btn {
         justify-content: center;
     }
-    
+
     .logout-btn i {
         margin-right: 0;
     }
-    
+
     .main-content {
         margin-left: 80px;
     }
-    
+
     .property-item {
         flex-direction: column;
     }
-    
+
     .property-image {
         width: 100%;
         height: 200px;
     }
-    
+
     .settings-container {
         flex-direction: column;
     }
-    
+
     .settings-sidebar {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid var(--gray-light);
     }
-    
+
     .settings-nav {
         display: flex;
         overflow-x: auto;
         padding: 1rem;
     }
-    
+
     .settings-nav li {
         white-space: nowrap;
     }
@@ -1228,30 +1267,33 @@ width: 40.5rem;
         gap: 1rem;
         padding: 1rem;
     }
-    
+
     .header-search {
         width: 100%;
     }
-    
+
     .section-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
-    
-    .stats-cards, .finance-summary {
+
+    .stats-cards,
+    .finance-summary {
         grid-template-columns: 1fr;
     }
-    
+
     .rooms-grid {
         grid-template-columns: 1fr;
     }
-    
-    .tenants-table-container, .transactions-table-container {
+
+    .tenants-table-container,
+    .transactions-table-container {
         overflow-x: auto;
     }
-    
-    .tenants-table, .transactions-table {
+
+    .tenants-table,
+    .transactions-table {
         min-width: 800px;
     }
 }
@@ -1260,21 +1302,21 @@ width: 40.5rem;
     .dashboard-section {
         padding: 1.5rem 1rem;
     }
-    
+
     .property-stats {
         flex-direction: column;
         gap: 0.75rem;
     }
-    
+
     .property-actions {
         flex-direction: column;
     }
-    
+
     .form-row {
         flex-direction: column;
         gap: 0;
     }
-    
+
     .profile-avatar {
         flex-direction: column;
         align-items: flex-start;
